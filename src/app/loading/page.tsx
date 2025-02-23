@@ -25,7 +25,7 @@ export default function LoadingPage() {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#DCDAFF]">
+    <div className="font-gyeonggi flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#DCDAFF]">
       <div className="absolute top-10">
         <div className="relative">
           <div className="hidden md:block">

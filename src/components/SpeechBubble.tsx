@@ -23,7 +23,7 @@ const POSITION_CLASSES = {
 } as const;
 
 const BUBBLE_BASE_CLASSES =
-  'absolute bg-[#ECEFFF] text-[#6B5CFF] rounded-full px-4 py-1 md:py-2 text-xs md:text-[15px] shadow-[0px_0px_7px_0px_#BDB4F7] transition-opacity duration-500 ease-in-out';
+  'font-gyeonggi absolute bg-[#ECEFFF] text-[#6B5CFF] rounded-full px-4 py-1 md:py-2 text-xs md:text-[15px] shadow-[0px_0px_7px_0px_#BDB4F7] transition-opacity duration-500 ease-in-out';
 
 export default function SpeechBubble({
   messages,

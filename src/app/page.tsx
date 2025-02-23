@@ -70,7 +70,7 @@ export default function Home() {
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#DCDAFF] px-4 py-8">
       <header className="mb-4 mt-4 text-center md:mb-10">
         <p className="font-pretendard text-3xl font-extrabold text-[#755FFF] md:mb-4 md:text-[45px]">
-          뿌춘쿠키
+          뿌슝타로
         </p>
         <p className="font-gyeonggi text-base font-light leading-[30px] text-[#000000] md:text-3xl">
           뿌슝이가 알려주는 오늘의 운세
