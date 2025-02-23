@@ -26,7 +26,7 @@ export default function Home() {
 
   const handlePhoneChange = (e: ChangeEvent<HTMLInputElement>) => {
     const rawInput = e.target.value;
-    const digitsOnly = rawInput.replace(/\D/g, '');
+    const digitsOnly = rawInput.replace(/\D/g, '').slice(0, 11);
     setPhoneNumber(digitsOnly);
     setDisplayPhone(formatPhoneNumber(digitsOnly));
   };
