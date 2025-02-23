@@ -2,6 +2,7 @@
 
 import ppushung from '@/assets/ppushung.png';
 import CheckBox from '@/components/CheckBox';
+import DuplicateModal from '@/components/DuplicatePhoneModal';
 import SpeechBubble from '@/components/SpeechBubble';
 import { ERROR_MESSAGES, SUPABASE } from '@/constants/constants';
 import { formatPhoneNumber } from '@/utils/formatPhoneNumber';
@@ -20,6 +21,7 @@ export default function Home() {
   const [displayPhone, setDisplayPhone] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [errors, setErrors] = useState<{ name?: string; phone?: string }>({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
 
   const handlePhoneChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -45,7 +47,7 @@ export default function Home() {
       const { error } = await supabase.from('users').insert([{ phone_number: phoneNumber }]);
       if (error) {
         if (error.code === '23505') {
-          setErrors({ phone: ERROR_MESSAGES.DUPLICATE_PHONE });
+          setIsModalOpen(true);
           return;
         }
         throw error;
@@ -140,6 +142,7 @@ export default function Home() {
           {isSubmitting ? '운세 보는 중...' : '오늘의 운세 보기'}
         </button>
       </form>
+      <DuplicateModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 }
