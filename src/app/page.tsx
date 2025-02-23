@@ -3,15 +3,15 @@
 import ppushung from '@/assets/ppushung.png';
 import CheckBox from '@/components/CheckBox';
 import SpeechBubble from '@/components/SpeechBubble';
+import { ERROR_MESSAGES, SUPABASE } from '@/constants/constants';
 import { formatPhoneNumber } from '@/utils/formatPhoneNumber';
+import { validateForm } from '@/utils/validation';
 import { createClient } from '@supabase/supabase-js';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { ChangeEvent, FormEvent, useState } from 'react';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const supabase = createClient(SUPABASE.URL, SUPABASE.ANON_KEY);
 
 export default function Home() {
   const [isChecked, setIsChecked] = useState<boolean>(false);
@@ -32,9 +32,7 @@ export default function Home() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    const newErrors: { name?: string; phone?: string } = {};
-    if (!name.trim()) newErrors.name = '이름을 입력해주세요';
-    if (phoneNumber.length < 10) newErrors.phone = '올바른 전화번호를 입력해주세요';
+    const newErrors = validateForm({ name, phoneNumber });
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -45,14 +43,20 @@ export default function Home() {
 
     try {
       const { error } = await supabase.from('users').insert([{ phone_number: phoneNumber }]);
-      if (error) throw error;
+      if (error) {
+        if (error.code === '23505') {
+          setErrors({ phone: ERROR_MESSAGES.DUPLICATE_PHONE });
+          return;
+        }
+        throw error;
+      }
 
       sessionStorage.setItem('userName', name);
 
-      router.push('/result');
+      router.push('/loading');
     } catch (error) {
       console.error('데이터 저장 오류:', error);
-      setErrors({ ...newErrors, phone: '데이터 저장 중 오류가 발생했습니다' });
+      setErrors({ phone: ERROR_MESSAGES.SAVE_ERROR });
     } finally {
       setIsSubmitting(false);
     }
