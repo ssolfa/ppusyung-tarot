@@ -1,6 +1,6 @@
 'use client';
 
-import arrow from '@/asset/icArrowsChevronRight.svg';
+import arrow from '@/assets/icArrowsChevronRight.svg';
 import Image from 'next/image';
 
 interface CheckBoxProps {
