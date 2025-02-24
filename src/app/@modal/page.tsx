@@ -1,8 +1,8 @@
 'use client';
-
 import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
-export default function Modal() {
+function ModalContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const isVisible = searchParams.get('duplicate') === 'true';
@@ -29,5 +29,13 @@ export default function Modal() {
         </button>
       </div>
     </div>
+  );
+}
+
+export default function Modal() {
+  return (
+    <Suspense>
+      <ModalContent />
+    </Suspense>
   );
 }
