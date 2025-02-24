@@ -15,8 +15,8 @@ export default function RootLayout({
 }) {
   console.log('modal slot exists:', !!modal);
   return (
-    <html lang="ko">
-      <body>
+    <html lang="ko" suppressHydrationWarning>
+      <body suppressHydrationWarning>
         {children}
         {modal}
       </body>
