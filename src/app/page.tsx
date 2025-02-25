@@ -42,27 +42,45 @@ export default function Home() {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.from('users').insert([{ phone_number: phoneNumber }]);
-      if (error) {
-        if (error.code === '23505') {
-          router.push('/?duplicate=true');
-          return;
+      if (isChecked) {
+        const { error } = await supabase.from('users').insert([{ phone_number: phoneNumber }]);
+
+        if (error) {
+          if (error.code === '23505') {
+            router.push('/?duplicate=true');
+            setIsSubmitting(false);
+            return;
+          }
+          throw error;
         }
-        throw error;
+      }
+
+      const smsResponse = await fetch('/api/send-sms', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          phoneNumber,
+          name,
+        }),
+      });
+
+      const smsResult = await smsResponse.json();
+      if (!smsResult.success) {
+        throw new Error('SMS 발송 실패');
       }
 
       sessionStorage.setItem('userName', name);
-
       router.push('/loading');
-    } catch (error) {
-      console.error('데이터 저장 오류:', error);
+    } catch {
       setErrors({ phone: ERROR_MESSAGES.SAVE_ERROR });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const isFormValid = name.trim() !== '' && phoneNumber.length >= 10;
+  const isFormValid = name.trim() !== '' && phoneNumber.length >= 11;
 
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#DCDAFF] px-4 py-8">
@@ -135,7 +153,7 @@ export default function Home() {
         <button
           type="submit"
           disabled={isSubmitting || !isFormValid}
-          className="h-[48px] w-[343px] rounded-full bg-[#6B5CFF] px-4 py-3 text-center font-pretendard text-base font-semibold leading-none text-white hover:bg-[#5A52EE] md:h-[52px] md:w-[525px] md:py-3.5 md:text-lg"
+          className="h-[48px] w-[343px] rounded-full bg-[#6B5CFF] px-4 py-3 text-center font-pretendard text-base font-semibold leading-none text-white hover:bg-[#5A52EE] disabled:bg-gray-400 md:h-[52px] md:w-[525px] md:py-3.5 md:text-lg"
         >
           {isSubmitting ? '운세 보는 중...' : '오늘의 운세 보기'}
         </button>
