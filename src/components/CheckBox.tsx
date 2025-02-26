@@ -39,7 +39,7 @@ export default function CheckBox({ isChecked, onChange }: CheckBoxProps) {
         </div>
 
         <span className="ml-2 text-xs text-[#4B505D] md:text-sm">
-          개인정보 수집 이용 동의 (필수)
+          개인정보 수집 이용 동의 (선택)
         </span>
       </label>
 
