@@ -25,7 +25,7 @@ export default function LoadingPage() {
           clearInterval(progressTimer);
           return 100;
         }
-        return prev + 1.5;
+        return prev + 2;
       });
     }, 105);
 
