@@ -93,7 +93,7 @@ export default function Home() {
         </p>
       </header>
 
-      <section className="relative flex h-48 w-48 justify-center md:h-64 md:w-64">
+      <section className="relative flex h-48 w-48 justify-center md:h-72 md:w-72">
         <Image
           alt="뿌슝이"
           src={ppushung}
