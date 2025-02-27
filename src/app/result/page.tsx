@@ -1,7 +1,7 @@
-import resultCard from '@/assets/ppushung.gif';
+import video from '@/assets/뿌슝타로.json';
+import { LottieAnimation } from '@/components/LottieAnimation';
 import { StarBackground } from '@/components/StarBackgroud';
 import { UserNameDisplay } from '@/components/UserNameDisplay';
-import Image from 'next/image';
 
 export default function FortuneCompletePage() {
   return (
@@ -16,13 +16,7 @@ export default function FortuneCompletePage() {
           </p>
 
           <div className="mx-auto flex w-[400px] items-center justify-center md:w-[500px]">
-            <Image
-              alt="결과 gif"
-              src={resultCard}
-              unoptimized
-              priority
-              className="h-auto max-w-full object-contain"
-            />
+            <LottieAnimation animationData={video} />
           </div>
 
           <div className="text-lg font-light text-white md:mt-10 md:text-[25px]">
