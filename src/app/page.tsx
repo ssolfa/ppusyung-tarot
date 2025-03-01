@@ -75,8 +75,6 @@ export default function Home() {
       router.push('/loading');
     } catch {
       setErrors({ phone: ERROR_MESSAGES.SAVE_ERROR });
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
