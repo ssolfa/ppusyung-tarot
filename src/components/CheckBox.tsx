@@ -44,7 +44,11 @@ export default function CheckBox({ isChecked, onChange }: CheckBoxProps) {
       </label>
 
       <div className="ml-auto">
-        <a href="https://www.notion.so" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://yourssu.notion.site/ebd/1ab6915d697880e88f30cd8e728dbe57"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <Image alt="화살표" src={arrow} className="cursor-pointer" width={24} height={24} />
         </a>
       </div>
