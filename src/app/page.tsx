@@ -2,6 +2,7 @@
 
 import ppushung from '@/assets/ppushung.png';
 import CheckBox from '@/components/CheckBox';
+import SemiCircleBackground from '@/components/SemiCircleBackground';
 import SpeechBubble from '@/components/SpeechBubble';
 import { ERROR_MESSAGES, SUPABASE } from '@/constants/constants';
 import { formatPhoneNumber } from '@/utils/formatPhoneNumber';
@@ -82,7 +83,13 @@ export default function Home() {
 
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#DCDAFF] px-4 py-8">
-      <header className="mb-4 mt-4 text-center md:mb-10">
+      <SemiCircleBackground
+        position="top"
+        color="#E2E1FF"
+        mobileHeight="25vh"
+        desktopHeight="30vh"
+      />
+      <header className="z-10 mb-8 text-center md:mb-8 md:pt-12">
         <p className="font-pretendard text-3xl font-extrabold text-[#755FFF] md:mb-4 md:text-[45px]">
           뿌슝타로
         </p>
@@ -91,7 +98,7 @@ export default function Home() {
         </p>
       </header>
 
-      <section className="relative flex h-48 w-48 justify-center md:h-72 md:w-72">
+      <section className="relative flex h-52 w-52 justify-center md:h-72 md:w-72">
         <Image
           alt="뿌슝이"
           src={ppushung}

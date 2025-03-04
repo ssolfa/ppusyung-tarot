@@ -3,6 +3,7 @@
 import loading from '@/assets/loading.gif';
 import oval_pc_purple from '@/assets/pc_purple.svg';
 import oval_phone_purple from '@/assets/phone_purple.svg';
+import SemiCircleBackground from '@/components/SemiCircleBackground';
 import SpeechBubble from '@/components/SpeechBubble';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -30,7 +31,7 @@ export default function LoadingPage() {
     }, 105);
 
     const redirectTimer = setTimeout(() => {
-      router.push('/result');
+      // router.push('/result');
     }, 7000);
 
     return () => {
@@ -41,6 +42,12 @@ export default function LoadingPage() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#DCDAFF] font-gyeonggi">
+      <SemiCircleBackground
+        position="bottom"
+        color="#E2E1FF"
+        mobileHeight="25vh"
+        desktopHeight="30vh"
+      />
       <div className="absolute top-10">
         <div className="relative">
           <div className="hidden md:block">

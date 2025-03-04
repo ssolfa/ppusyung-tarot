@@ -17,7 +17,7 @@ export const MESSAGE_TEMPLATES = {
 행복한 하루 보내시길 바라며, 유어슈는 언제나 여러분의 행복한 캠퍼스 라이프를 응원합니다. ♥
 --- 
 유어슈는 지금 2025 리크루팅 중 ☎
-https://yourssu.com/recruiting/?utm_source=message&utm_medium=sms&utm_campaign=taro&utm_content=tarosms
+https://yourssu.com/recruiting/
 많은 관심 부탁드립니다.`,
   },
 };
