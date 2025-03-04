@@ -31,7 +31,7 @@ export default function LoadingPage() {
     }, 105);
 
     const redirectTimer = setTimeout(() => {
-      // router.push('/result');
+      router.push('/result');
     }, 7000);
 
     return () => {
